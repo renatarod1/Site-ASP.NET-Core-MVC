@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WS_Lanches.Context;
+using WS_Lanches.Repositories;
 
 namespace WS_Lanches
 {
@@ -25,6 +26,10 @@ namespace WS_Lanches
         public void ConfigureServices(IServiceCollection services) {
             services.AddDbContext<AppDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddTransient<ICategoriaRepository, CategoriaRepository>();
+            services.AddTransient<ILancheRepository, LancheRepository>();
+
             services.AddControllersWithViews();
         }
 
