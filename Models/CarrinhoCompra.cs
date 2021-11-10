@@ -38,20 +38,17 @@ namespace WS_Lanches.Models
             };
         }
 
-        public void AdicionarAoCarrinho(Lanche lanche, int quantidade) {
-            //obttem o lanche do carrinho 
+        public void AdicionarAoCarrinho(Lanche lanche) {
             var carrinhoCompraItem =
-                    _context.CarrinhoCompraItens.SingleOrDefault(
-                        s => s.Lanche.LancheId == lanche.LancheId && s.CarrinhoCompraId == CarrinhoCompraId);
+                   _context.CarrinhoCompraItens.SingleOrDefault(
+                      s => s.Lanche.LancheId == lanche.LancheId && s.CarrinhoCompraId == CarrinhoCompraId);
 
-            //se o carrinho for null cria um carrinho novo
             if (carrinhoCompraItem == null) {
                 carrinhoCompraItem = new CarrinhoCompraItem {
                     CarrinhoCompraId = CarrinhoCompraId,
                     Lanche = lanche,
                     Quantidade = 1
                 };
-
                 _context.CarrinhoCompraItens.Add(carrinhoCompraItem);
             }
             else {
