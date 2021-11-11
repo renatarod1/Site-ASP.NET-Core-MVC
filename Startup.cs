@@ -31,6 +31,7 @@ namespace WS_Lanches
             services.AddScoped(cp => CarrinhoCompra.GetCarrinho(cp));
             services.AddControllersWithViews();
             services.AddMvc().AddSessionStateTempDataProvider();
+            services.AddMemoryCache();
             services.AddSession();
         }
 
