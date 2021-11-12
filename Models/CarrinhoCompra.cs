@@ -97,9 +97,9 @@ namespace WS_Lanches.Models
         }
 
         public decimal GetCarrinhoCompraTotal() {
-            var total = _context.CarrinhoCompraItens.Where(c => c.CarrinhoCompraId == CarrinhoCompraId)
-                .Select(c => c.Lanche.Preco * c.Quantidade).Sum();
-
+            //var total = _context.CarrinhoCompraItens.Where(c => c.CarrinhoCompraId == CarrinhoCompraId)
+            //    .Select(c => c.Lanche.Preco * c.Quantidade).Sum();
+            var total = 0;
             return total;
         }
     }
