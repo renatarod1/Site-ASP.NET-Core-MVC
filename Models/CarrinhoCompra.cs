@@ -80,8 +80,7 @@ namespace WS_Lanches.Models
         }
 
         public List<CarrinhoCompraItem> GetCarrinhoCompraItens() {
-            return CarrinhoCompraItens ??
-                   (CarrinhoCompraItens =
+            return CarrinhoCompraItens ?? (CarrinhoCompraItens =
                        _context.CarrinhoCompraItens.Where(c => c.CarrinhoCompraId == CarrinhoCompraId)
                            .Include(s => s.Lanche)
                            .ToList());
@@ -97,9 +96,8 @@ namespace WS_Lanches.Models
         }
 
         public decimal GetCarrinhoCompraTotal() {
-            //var total = _context.CarrinhoCompraItens.Where(c => c.CarrinhoCompraId == CarrinhoCompraId)
-            //    .Select(c => c.Lanche.Preco * c.Quantidade).Sum();
-            var total = 0;
+            var total = _context.CarrinhoCompraItens.Where(c => c.CarrinhoCompraId == CarrinhoCompraId)
+                .Select(c => c.Lanche.Preco * c.Quantidade).Sum();
             return total;
         }
     }

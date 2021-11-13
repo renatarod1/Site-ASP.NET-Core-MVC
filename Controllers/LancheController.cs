@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using WS_Lanches.Models;
 using WS_Lanches.Repositories;
 using WS_Lanches.ViewModels;
@@ -47,6 +46,15 @@ namespace WS_Lanches.Controllers
             };
 
             return View(lanchesListViewModel);
+        }
+
+        public IActionResult Details(int lancheId) {
+            var lanche = _lancheRepository.Lanches.FirstOrDefault(l => l.LancheId == lancheId);
+
+            if (lanche == null) {
+                return View("~/Views/Error/Error.cshtml");
+            }
+            return View(lanche);
         }
     }
 }
