@@ -29,16 +29,15 @@ namespace WS_Lanches.Controllers
 
             if (ModelState.IsValid) {
                 _pedidoRepository.CriarPedido(pedido);
+
+                ViewBag.CheckoutCompletoMensagem = "Obrigado pelo seu pedido :) ";
+                ViewBag.TotalPedido = _carrinhoCompra.GetCarrinhoCompraTotal();//.ToString("C2");
+
                 _carrinhoCompra.LimparCarrinho();
-                return RedirectToAction("CheckoutCompleto");
+                return View("~/Views/Pedido/CheckoutCompleto.cshtml", pedido);
             }
 
             return View(pedido);
-        }
-
-        public IActionResult CheckoutCompleto() {
-            ViewBag.CheckoutCompletoMensagem = "Obrigado pelo seu pedido :) ";
-            return View();
         }
     }
 }
