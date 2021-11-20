@@ -31,7 +31,7 @@ namespace WS_Lanches.Controllers
                 _pedidoRepository.CriarPedido(pedido);
 
                 ViewBag.CheckoutCompletoMensagem = "Obrigado pelo seu pedido :) ";
-                ViewBag.TotalPedido = _carrinhoCompra.GetCarrinhoCompraTotal();//.ToString("C2");
+                ViewBag.TotalPedido = _carrinhoCompra.GetCarrinhoCompraTotal();
 
                 _carrinhoCompra.LimparCarrinho();
                 return View("~/Views/Pedido/CheckoutCompleto.cshtml", pedido);
